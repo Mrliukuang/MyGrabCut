@@ -24,13 +24,13 @@ fprintf('Performing kmeans 5 replicates...\n');
 X_ind = kmeans(X, K, 'Distance', 'cityblock', 'Replicates', 5, 'Display', 'final');
 
 %% Init model
-model.Pi = zeros(1, K);
+model.Weights = zeros(1, K);
 model.Mu = zeros(K, D);
 model.Sigma = zeros(D, D, K);
 
 for k = 1:K
     Xk = X(X_ind == k, :);
-    model.Pi(k) = size(Xk, 1) / N;
+    model.Weights(k) = size(Xk, 1) / N;
     model.Mu(k, :) = mean(Xk);
     model.Sigma(:, :, k) = cov(Xk);
 end

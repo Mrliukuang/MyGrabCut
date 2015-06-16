@@ -1,12 +1,18 @@
-function comp_idx = assign_gmm_component(im, mask, gmm_f, gmm_b, MASK)
+function [comp_ind_f, comp_ind_b] = assign_gmm_component(im_1d, gmm_f, gmm_b, ind_f, ind_b)
+%% Assign fore/background pixels to the most probable component
+%
+% Inputs:
+%   - im_1d: image shaped [N, 3]
+%   - gmm_f, gmm_b: fore/background GMM
+%   - ind_f, ind_b: fore/background pixel index(mask)
+%
+% Outpus:
+%   - comp_ind_f, comp_ind_b: learned component index
 
-[H, W, ~] = size(im);
-comp_idx = zeros(H, W);
 
-mask_b = (mask == MASK.BGD | mask == MASK.PR_BGD);
-mask_f = (mask == MASK.FGD | mask == MASK.PR_FGD);
+im_f = im_1d(ind_f, :);
+comp_ind_f = predict(im_f, gmm_f);
 
-im_reshaped = reshape(im, H*W, []);
-comp_idx(mask_b) = predict(im_reshaped(mask_b, :), gmm_b);
-comp_idx(mask_f) = predict(im_reshaped(mask_f, :), gmm_f);
+im_b = im_1d(ind_b, :);
+comp_ind_b = predict(im_b, gmm_b);
 
