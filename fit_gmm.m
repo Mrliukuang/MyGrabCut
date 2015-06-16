@@ -20,8 +20,8 @@ function model = fit_gmm(X, K)
 [N, D] = size(X);
 
 %% k-means initilization
-fprintf('Performing kmeans 5 replicates...\n');
-X_ind = kmeans(X, K, 'Distance', 'cityblock', 'Replicates', 5, 'Display', 'final');
+fprintf('Performing kmeans 1 replicates...\n');
+X_ind = kmeans(X, K, 'Distance', 'cityblock', 'Replicates', 1, 'Display', 'final');
 
 %% Init model
 model.Weights = zeros(1, K);
