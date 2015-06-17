@@ -18,7 +18,7 @@ MASK.FGD = 1;    % (probable)foreground
 
 %% Load image
 % im = imread('banana1.bmp');
-im = imread('C:\Users\Kuang\Desktop\CS231B\1. Image Segmentation\data_GT\person2.jpg');
+im = imread('C:\Users\Kuang\Desktop\CS231B\1. Image Segmentation\data_GT\llama.jpg');
 [H, W, ~] = size(im);
 im = double(im) / 255;
 imagesc(im)
@@ -72,8 +72,8 @@ for i = 1:max_iter
     % set background to white
     im_t(ind_b, :) = 255;
     im_t = reshape(im_t, H, W, []);
-    figure;
-    imagesc(im_t)
+    figure; imagesc(im_t)
+    drawnow
 end
 
 

@@ -28,10 +28,10 @@ model.Mu = zeros(K, D);
 model.Sigma = zeros(D, D, K);
 for k = 1:K
     Xk = X(comp_ind == k, :);
-    if size(Xk, 1) == 0 % no such component
-        model.Sigma(:, :, k) = 1e-7*eye(D);
-        continue
-    end
+%     if size(Xk, 1) == 0 % no such component
+%         model.Sigma(:, :, k) = 1e-7*eye(D);
+%         continue
+%     end
     
     model.Weights(k) = size(Xk, 1) / N;
     model.Mu(k, :) = mean(Xk);

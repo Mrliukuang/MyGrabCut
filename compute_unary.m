@@ -17,11 +17,11 @@ try
 for k = 1:K
     Pi = gmm.Weights(k);
     Mu = gmm.Mu(k, :);
-    Sigma = gmm.Sigma(:, :, k) + 1e-7*eye(D);
+    Sigma = gmm.Sigma(:, :, k);
     
     Ds(:, k) = -log(mvnpdf(X, Mu, Sigma))-log(Pi)-1.5*log(2*pi); 
 end
-catch MException
+catch
     fprintf('Error')
 end
 
